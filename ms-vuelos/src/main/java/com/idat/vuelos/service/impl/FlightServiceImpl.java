@@ -1,12 +1,15 @@
 package com.idat.vuelos.service.impl;
 
+import com.idat.vuelos.model.dto.FlightRequest;
 import com.idat.vuelos.model.dto.FlightResponse;
+import com.idat.vuelos.model.entity.FlightEntity;
+import com.idat.vuelos.model.entity.MenuEntity;
+import com.idat.vuelos.model.entity.PersonEntity;
 import com.idat.vuelos.repository.FlightRepository;
 import com.idat.vuelos.service.FlightService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class FlightServiceImpl implements FlightService {
@@ -17,38 +20,65 @@ public class FlightServiceImpl implements FlightService {
         this.repository = repository;
     }
 
-    private List<FlightResponse> flights = new ArrayList<FlightResponse>();
 
     @Override
-    public void registerFlight(FlightResponse flightRequest) {
-//        flights.add(flightRequest);
-        repository.save();
+    public void registerFlight(FlightRequest dto) {
+
+        var entity = new FlightEntity();
+        entity.setDestino(dto.getDestino());
+        entity.setOrigen(dto.getOrigen());
+        entity.setDuracion(dto.getDuracion());
+
+        var person = new PersonEntity();
+        person.setNombre(dto.getPerson().getNombre());
+        person.setApellido(dto.getPerson().getApellido());
+
+        entity.setPerson(person);
+
+        var menus = new ArrayList<MenuEntity>();
+        dto.getMenus().forEach(x -> {
+            var menu = new MenuEntity();
+            menu.setEntrada(x.getEntrada());
+            menu.setFondo(x.getFondo());
+
+            menus.add(menu);
+        });
+
+        entity.setMenus(menus);
+
+        repository.save(entity);
     }
 
 
     @Override
-    public List<FlightResponse> getFlights() {
-        var menu1 = new FlightResponse.Menu();
-        menu1.setEntrada("Ocopa");
-        menu1.setFondo("Tallarines");
+    public Iterable<FlightResponse> getFlights() {
+        var entities = repository.findAll();
 
-        var menu2 = new FlightResponse.Menu();
-        menu2.setEntrada("Sopa");
-        menu2.setFondo("Estofado");
+        var flights = new ArrayList<FlightResponse>();
 
-        var f1 = new FlightResponse();
-        f1.setDuracion(3.5f);
-        f1.setOrigen("Lima");
-        f1.setDestino("Chiclayo");
-        f1.setMenus(List.of(menu1, menu2));
+        entities.forEach(x -> {
+            var dto = new FlightResponse();
+            dto.setDestino(x.getDestino());
+            dto.setOrigen(x.getOrigen());
+            dto.setDuracion(x.getDuracion());
 
-        var f2 = new FlightResponse();
-        f2.setDuracion(12.5f);
-        f2.setOrigen("Boston");
-        f2.setDestino("Lima");
-        f2.setMenus(List.of(menu2));
+            var menus = new ArrayList<FlightResponse.Menu>();
 
-//        return List.of(f1, f2);
+            x.getMenus().forEach(m -> {
+                var menu = new FlightResponse.Menu();
+                menu.setEntrada(m.getEntrada());
+                menu.setFondo(m.getFondo());
+
+
+                menus.add(menu);
+            });
+
+            dto.setMenus(menus);
+
+
+            flights.add(dto);
+        });
+
         return flights;
     }
 }

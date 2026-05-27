@@ -1,5 +1,6 @@
 package com.idat.vuelos.controller;
 
+import com.idat.vuelos.model.dto.FlightRequest;
 import com.idat.vuelos.model.dto.FlightResponse;
 import com.idat.vuelos.service.FlightService;
 import com.idat.vuelos.service.impl.FlightServiceImpl;
@@ -19,12 +20,12 @@ public class FlightController {
     }
 
     @GetMapping
-    public List<FlightResponse> flights() {
+    public Iterable<FlightResponse> flights() {
         return flightService.getFlights();
     }
 
     @PostMapping("/register")
-    public void register(@RequestBody FlightResponse flightRequest) {
+    public void register(@RequestBody FlightRequest flightRequest) {
         flightService.registerFlight(flightRequest);
     }
 

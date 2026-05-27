@@ -10,6 +10,32 @@ public class FlightRequest {
     private String origen;
     private String destino;
     List<Menu> menus;
+    Person person;
+
+    public static class Person {
+        private String nombre;
+        private String apellido;
+
+        public Person() {
+        }
+
+        public String getNombre() {
+            return nombre;
+        }
+
+        public void setNombre(String nombre) {
+            this.nombre = nombre;
+        }
+
+        public String getApellido() {
+            return apellido;
+        }
+
+        public void setApellido(String apellido) {
+            this.apellido = apellido;
+        }
+    }
+
     public static class Menu {
         public Menu() {
         }
@@ -64,5 +90,13 @@ public class FlightRequest {
 
     public void setMenus(List<Menu> menus) {
         this.menus = menus;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }
