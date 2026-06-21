@@ -1,15 +1,14 @@
-package com.idat.vuelos.controller;
+package com.menu.demo.controller;
 
-import com.idat.vuelos.model.dto.MenuRequest;
-import com.idat.vuelos.model.dto.MenuResponse;
-import com.idat.vuelos.service.MenuService;
-import com.idat.vuelos.service.impl.MenuServiceImpl;
+import com.menu.demo.model.dto.MenuRequest;
+import com.menu.demo.model.dto.MenuResponse;
+import com.menu.demo.service.MenuService;
+import com.menu.demo.service.impl.MenuServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.servers.Server;
-import io.swagger.v3.oas.annotations.Operation;
-
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -25,7 +24,7 @@ public class MenuController {
     }
 
     @GetMapping
-    @Operation(description = "Endpoint para listar todos los menus", method = "POST", hidden = true)
+    @Operation(description = "Endpoint para listar todos los menus", method = "GET", hidden = true)
     public Iterable<MenuResponse> menus() {
         return menuService.getMenus();
     }

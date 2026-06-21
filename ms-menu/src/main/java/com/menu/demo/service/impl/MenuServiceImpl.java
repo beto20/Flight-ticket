@@ -1,10 +1,10 @@
-package com.idat.vuelos.service.impl;
+package com.menu.demo.service.impl;
 
-import com.idat.vuelos.model.dto.MenuRequest;
-import com.idat.vuelos.model.dto.MenuResponse;
-import com.idat.vuelos.model.mapper.MenuMapper;
-import com.idat.vuelos.repository.MenuRepository;
-import com.idat.vuelos.service.MenuService;
+import com.menu.demo.model.dto.MenuRequest;
+import com.menu.demo.model.dto.MenuResponse;
+import com.menu.demo.model.mapper.MenuMapper;
+import com.menu.demo.repository.MenuRepository;
+import com.menu.demo.service.MenuService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

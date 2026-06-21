@@ -10,6 +10,7 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
         </processorPath>
+        <module name="demo (1) (com.menu)" />
         <module name="demo" />
         <module name="demo (1) (com.mspersona)" />
       </profile>
@@ -23,6 +24,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="demo" options="-parameters" />
+      <module name="demo (1) (com.menu)" options="-parameters" />
       <module name="demo (1) (com.mspersona)" options="-parameters" />
     </option>
   </component>

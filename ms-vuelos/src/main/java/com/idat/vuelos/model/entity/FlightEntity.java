@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "tb_vuelo")
+@Table(name = "tb_ticket_vuelo")
 public class FlightEntity {
 
     @Id
@@ -19,14 +19,8 @@ public class FlightEntity {
     private float duracion;
     private String origen;
     private String destino;
-
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    List<MenuEntity> menus;
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "person_id", referencedColumnName = "id")
-    PersonEntity person;
-
+    private String tipo; // economic class, business class, regular class
+    private String menuOpcion;
 
     public float getDuracion() {
         return duracion;
@@ -52,19 +46,19 @@ public class FlightEntity {
         this.destino = destino;
     }
 
-    public List<MenuEntity> getMenus() {
-        return menus;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setMenus(List<MenuEntity> menus) {
-        this.menus = menus;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public PersonEntity getPerson() {
-        return person;
+    public String getMenuOpcion() {
+        return menuOpcion;
     }
 
-    public void setPerson(PersonEntity person) {
-        this.person = person;
+    public void setMenuOpcion(String menuOpcion) {
+        this.menuOpcion = menuOpcion;
     }
 }

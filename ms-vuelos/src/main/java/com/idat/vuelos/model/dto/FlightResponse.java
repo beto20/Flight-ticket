@@ -14,6 +14,7 @@ public class FlightResponse {
         public Menu() {
         }
 
+        private String opcion;
         private String entrada;
         private String fondo;
 
@@ -31,6 +32,14 @@ public class FlightResponse {
 
         public void setFondo(String fondo) {
             this.fondo = fondo;
+        }
+
+        public String getOpcion() {
+            return opcion;
+        }
+
+        public void setOpcion(String opcion) {
+            this.opcion = opcion;
         }
     }
 

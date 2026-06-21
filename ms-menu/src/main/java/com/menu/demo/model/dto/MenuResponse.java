@@ -1,14 +1,14 @@
-package com.idat.vuelos.model.dto;
+package com.menu.demo.model.dto;
 
 public class MenuResponse {
     public MenuResponse() {
     }
 
     private int id;
-    private String entrada;
-    private String fondo;
     private String tipo;  // economic class, business class, regular class
     private String opcion;
+    private String entrada;
+    private String fondo;
 
     public int getId() {
         return id;

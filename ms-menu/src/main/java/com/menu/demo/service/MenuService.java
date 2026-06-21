@@ -1,7 +1,7 @@
-package com.idat.vuelos.service;
+package com.menu.demo.service;
 
-import com.idat.vuelos.model.dto.MenuRequest;
-import com.idat.vuelos.model.dto.MenuResponse;
+import com.menu.demo.model.dto.MenuRequest;
+import com.menu.demo.model.dto.MenuResponse;
 
 
 public interface MenuService {

@@ -1,54 +1,62 @@
 package com.idat.vuelos.service.impl;
 
-import com.idat.vuelos.model.dto.FlightRequest;
-import com.idat.vuelos.model.dto.FlightResponse;
+import com.idat.vuelos.client.MenuClient;
+import com.idat.vuelos.client.PersonClient;
+import com.idat.vuelos.model.dto.*;
 import com.idat.vuelos.model.entity.FlightEntity;
-import com.idat.vuelos.model.entity.MenuEntity;
-import com.idat.vuelos.model.entity.PersonEntity;
+import com.idat.vuelos.model.mapper.PersonMapper;
 import com.idat.vuelos.repository.FlightRepository;
 import com.idat.vuelos.service.FlightService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class FlightServiceImpl implements FlightService {
 
     private static FlightRepository repository;
+    private static PersonClient personClient;
+    private static MenuClient menuClient;
 
-    public FlightServiceImpl(FlightRepository repository) {
+    public FlightServiceImpl(FlightRepository repository, PersonClient personClient, MenuClient menuClient) {
         this.repository = repository;
+        this.personClient = personClient;
+        this.menuClient = menuClient;
     }
 
 
     @Override
     public void registerFlight(FlightRequest dto) {
-
         var entity = new FlightEntity();
         entity.setDestino(dto.getDestino());
         entity.setOrigen(dto.getOrigen());
         entity.setDuracion(dto.getDuracion());
 
-        var person = new PersonEntity();
-        person.setNombre(dto.getPerson().getNombre());
-        person.setApellido(dto.getPerson().getApellido());
+//        entity.setPerson(PersonMapper.MAPPER.toPersonEntity(getPersonInformation(dto.getPerson())));
+        entity.setTipo(dto.getTipo());
 
-        entity.setPerson(person);
+        getMenusInformation().forEach(x -> {
+            System.out.println("TIPO: "+ x.getTipo());
+            System.out.println("DTO: "+ dto.getTipo());
+            if (x.getTipo().contains(dto.getTipo())) {
 
-        var menus = new ArrayList<MenuEntity>();
-        dto.getMenus().forEach(x -> {
-            var menu = new MenuEntity();
-            menu.setEntrada(x.getEntrada());
-            menu.setFondo(x.getFondo());
+                System.out.println("getOpcion: "+ x.getOpcion());
 
-            menus.add(menu);
+                entity.setMenuOpcion(x.getOpcion());
+            }
         });
-
-        entity.setMenus(menus);
 
         repository.save(entity);
     }
 
+    private PersonResponse getPersonInformation(FlightRequest.Person dto) {
+        return personClient.getPerson(PersonMapper.MAPPER.toPersonRequest(dto));
+    }
+
+    private List<MenuResponse> getMenusInformation() {
+        return menuClient.getMenus();
+    }
 
     @Override
     public Iterable<FlightResponse> getFlights() {
@@ -64,18 +72,16 @@ public class FlightServiceImpl implements FlightService {
 
             var menus = new ArrayList<FlightResponse.Menu>();
 
-            x.getMenus().forEach(m -> {
+            getMenusInformation().forEach(m -> {
                 var menu = new FlightResponse.Menu();
+                menu.setOpcion(m.getOpcion());
                 menu.setEntrada(m.getEntrada());
                 menu.setFondo(m.getFondo());
-
 
                 menus.add(menu);
             });
 
             dto.setMenus(menus);
-
-
             flights.add(dto);
         });
 

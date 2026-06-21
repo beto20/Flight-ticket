@@ -1,21 +1,20 @@
-package com.idat.vuelos.model.dto;
+package com.menu.demo.model.entity;
 
-public class MenuResponse {
-    public MenuResponse() {
-    }
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "tb_menu")
+public class MenuEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String entrada;
-    private String fondo;
     private String tipo;  // economic class, business class, regular class
     private String opcion;
+    private String entrada;
+    private String fondo;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public MenuEntity() {
     }
 
     public String getEntrada() {

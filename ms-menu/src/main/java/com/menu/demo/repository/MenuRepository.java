@@ -1,6 +1,6 @@
-package com.idat.vuelos.repository;
+package com.menu.demo.repository;
 
-import com.idat.vuelos.model.entity.MenuEntity;
+import com.menu.demo.model.entity.MenuEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
