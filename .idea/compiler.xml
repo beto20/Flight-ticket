@@ -19,6 +19,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="demo (1) (com.eureka)" />
+        <module name="demogw" />
         <module name="demo (1) (com.config.server)" />
       </profile>
     </annotationProcessing>
@@ -30,6 +31,7 @@
       <module name="demo (1) (com.eureka)" options="-parameters" />
       <module name="demo (1) (com.menu)" options="-parameters" />
       <module name="demo (1) (com.mspersona)" options="-parameters" />
+      <module name="demogw" options="-parameters" />
     </option>
   </component>
 </project>

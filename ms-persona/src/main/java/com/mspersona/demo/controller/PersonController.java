@@ -7,7 +7,7 @@ import com.mspersona.demo.service.PersonService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/v1/persons")
+@RequestMapping("v1/persons")
 public class PersonController {
 
     private PersonService service;

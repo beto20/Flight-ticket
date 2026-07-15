@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/ms-menu/pom.xml" />
         <option value="$PROJECT_DIR$/ms-descubridor/pom.xml" />
         <option value="$PROJECT_DIR$/ms-configserver/pom.xml" />
+        <option value="$PROJECT_DIR$/demogw/pom.xml" />
       </list>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />
