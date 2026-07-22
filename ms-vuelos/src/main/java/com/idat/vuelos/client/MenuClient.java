@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@FeignClient(name = "MenuClient", url = "http://localhost:8082/v1/menus")
+@FeignClient(name = "MenuClient", url = "http://ec2-13-220-217-119.compute-1.amazonaws.com:8080/v1/menus")
 public interface MenuClient {
 
     @GetMapping
